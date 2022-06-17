@@ -12,6 +12,10 @@
     font-style: normal;
   }
 
+#top{
+    min-height: 651px;
+}
+
 #color{
     width: 60px;
     height: 30px;

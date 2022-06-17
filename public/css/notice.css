@@ -16,6 +16,15 @@
     text-align: center;
     padding-top: 30px;
     padding-bottom: 20px;
+    min-height: 609px;
+}
+
+#wrapper{
+    width: 100vw;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    min-height: 601px;
 }
 
 .notice{
