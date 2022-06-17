@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'InfinitySans-BoldA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.wrapper{
+    width: 100vw;
+    min-height: 400px;
+    align-items: center;
+    display: flex;
+    margin-left: 460px;
+}
+
+.notice{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 1000px;
+    text-align: left;
+    border: solid 1px #798FBA;
+}
+.notice p{
+    margin-left: 20px;
+    font-family: paybooc-Bold;
+    
+}
+.title{
+    font-size: 20px;
+    font-style: bold;
+}
+.name{
+    color: rgb(140, 137, 137);
+    font-size: 15px;
+}
+.date{
+    color: rgb(140, 137, 137);
+    font-size: 15px;
+}
+.sep{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: rgb(140, 137, 137);
+    font-size: 15px;
+}
+
+.name_date{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.addButton{
+    width: 50px;
+    height: 50px;
+    background-color: #798FBA;
+    border-radius: 50px;
+}
+.plus{
+    width: 50px;
+    height:50px;
+}
+#empty{
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}

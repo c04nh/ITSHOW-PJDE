@@ -43,7 +43,7 @@ app.get("/main", function(req,res){
      
 })
 
-app.get("/main/calender/:id", function(req,res){ 
+app.get("/main/:id/calender", function(req,res){ 
     const id = req.params.id;
 
     const sql = "SELECT * FROM schedule WHERE proId=?";
@@ -55,18 +55,57 @@ app.get("/main/calender/:id", function(req,res){
     });
 })
 
-app.get("/main/calender/:id/addSchedule", function(req,res){
+app.get("/main/:id/calender/addSchedule", function(req,res){
     res.render('addSchedule');
 })
 
-app.get("/main/calender/:id/addSchedule/addSche", function(req,res){
+app.get("/main/:id/calender/addSchedule/addSche", function(req,res){
     var id = req.params.id;
     var name = req.query.name;
     var date = req.query.select;
 
     db.query('insert into schedule (schNm, schDate, proId) VALUES("' + name + '", "' + date + '", "' + id + '");');
 
-    res.send("<script>window.location.replace('/main/calender/" + id +"');</script>");
+    res.send("<script>window.location.replace('/main/" + id +"/calender');</script>");
+})
+
+app.get("/main/:id/meeting", function(req,res){ 
+    const id = req.params.id;
+
+    const sql = "SELECT * FROM meeting WHERE proId=? order by meDate desc";
+    db.query(sql, id, (err, row)=>{
+      if(err) {
+        console.error(err.message);
+      }
+      res.render('meeting', {project:row});
+    });
+})
+
+app.get("/main/:id/meeting/addMeeting", function(req,res){
+    res.render('addMeeting');
+})
+
+app.get("/main/:id/meeting/addMeeting/addMeet", function(req,res){
+    var id = req.params.id;
+    var title = req.query.title;
+    var name = req.query.name;
+    var content = req.query.content;
+
+    db.query('insert into meeting (title, userId, proId, content, meDate) VALUES("' + title + '", "' + name + '", "' + id + '", "' + content + '", DATE_FORMAT(now(), \'%Y-%m-%d\'));');
+
+    res.send("<script>window.location.replace('/main/" + id +"/meeting');</script>");
+})
+
+app.get("/main/:id/notice", function(req,res){ 
+    const id = req.params.id;
+
+    const sql = "SELECT * FROM notice WHERE proId=? order by notDate desc";
+    db.query(sql, id, (err, row)=>{
+      if(err) {
+        console.error(err.message);
+      }
+      res.render('notice', {project:row});
+    });
 })
 
 app.get("/register", function(req,res){ 

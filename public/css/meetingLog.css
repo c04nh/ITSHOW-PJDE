@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.top{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.log{
+    display: inline-block;
+    width: 1000px;
+    margin-top: 50px;
+    text-align: left;
+    border: solid 2px #798FBA;
+    font-family: InfinitySans-RegularA1;
+    padding: 20px;
+}
+
+.log img{
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+.title{
+    font-size: 25px;
+    font-style: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.edit{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+}
+.name{
+    color: rgb(140, 137, 137);
+    font-size: 15px;
+}
+.date{
+    color: rgb(140, 137, 137);
+    font-size: 15px;
+}
+.sep{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: rgb(140, 137, 137);
+    font-size: 15px;
+}
+
+.name_date{
+    height: 30px;
+}
+
+.log hr{
+    border: 1px;
+    height: 1px;
+    color: #bec4d0;
+    border-color: #bec4d0;
+    background-color: #bec4d0;
+}
+
+.content{
+    font-size: 18px;
+    margin: 10px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.add{
+    width: 50px;
+    height: 50px;
+    background-color: #798FBA;
+    border-radius: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 60px;
+}
+
+#empty{
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
