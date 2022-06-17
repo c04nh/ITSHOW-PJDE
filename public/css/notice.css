@@ -13,10 +13,9 @@
 }
 .wrapper{
     width: 100vw;
-    min-height: 400px;
-    align-items: center;
-    display: flex;
-    margin-left: 460px;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 
 .notice{

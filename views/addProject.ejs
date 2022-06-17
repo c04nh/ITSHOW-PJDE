@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="shortcut icon"
-          type="image/x-icon"
-          href="img/logo2.png"
-        />
-        <link rel="stylesheet" href="/css/main_header.css" />
-        <link rel="stylesheet" href="/css/menu.css" />
-        <link rel="stylesheet" href="/css/footerStyle.css" />
-        <link rel="stylesheet" href="/css/register.css" />
-        <script defer src="js/addProject.js"></script>
-        <script defer src="js/menu.js"></script>
-        <title>프젝돔이</title>
-      <body>
-        <nav class="header">
-          <div class="fake" style="text-align: center">
-            <img
-              src="img/fake.png"
-              style="height: 60px; width: 60px"
-            />
-          </div>
-          <div class="logo" style="text-align: center">
-            <img
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="img/logo2.png"
+    />
+    <link rel="stylesheet" href="/css/addProject.css" />
+    <link rel="stylesheet" href="/css/main_header.css" />
+    <link rel="stylesheet" href="/css/footerStyle.css" />
+    <script defer src="js/addProject.js"></script>
+    <title>프젝돔이</title>
+  </head>
+  <body>
+    <nav class="header">
+        <div class="fake" style="text-align: center">
+          <img
+            src="/img/fake.png"
+            style="height: 60px; width: 60px"
+          />
+        </div>
+        <div class="logo" style="text-align: center">
+            <a href="main">
+              <img class="img"
               src="img/logo.png"
               style="height: 60px; width: 60px"
-            />
-            <span>프젝돔이</a></span>
+              />
+            <span class="pjde">프젝돔이</span></a>
           </div>
-          <div class="notice_icon">
-            <a href="noticeMain.html"
-              ><img
-                src="img/notice.png"
-                style="height: 40px; width: 40px"
-            /></a>
-          </div>
-      </nav>
-
-    <div style="margin-top: 100px; margin-bottom: 100px;">
-        <form method="GET" action="login">
-            <input type="text" id="id" name="id" placeholder="아이디"><br/>
-            <input type="password" id="password" name="password" placeholder="비밀번호"><br/>
-            <input type="submit" value="로그인" id="button">
-        </form>
-    </div>
-
+        <div class="notice_icon">
+          <a href="noticeMain.html"
+            ><img
+              src="/img/notice.png"
+              style="height: 40px; width: 40px"
+          /></a>
+        </div>
+    </nav>
+    <form method="GET" action="create">
+      <input type="color" id="color" name="color" title="클릭 시 색을 설정할 수 있습니다."><br/>
+      <input id = "title" name="title" type="text" placeholder="프로젝트 명" /> <br />
+      <input id = "manager" class="member" name = "manager" type="text" placeholder="관리자 이름" /> <br />
+      <input id = "id1" class="member" name = "id1" type="text" placeholder="멤버 이름" /> <br />
+      <input id = "id2" class="member" name = "id2" type="text" placeholder="멤버 이름" /> <br />
+      <input id = "id3" class="member" name = "id3" type="text" placeholder="멤버 이름" /> <br />
+      <input id = "id4" class="member" name = "id4" type="text" placeholder="멤버 이름" /> <br />
+      <input type="submit" value="완료" id="button" style="
+      background-color: #798fba;
+      margin-top: 100px;
+      font-size: 15pt;
+      color: white;">
+    </form>
     <div id="footer">
         <div class="col-12 col-md">
           <img
@@ -179,6 +184,5 @@
           </ul>
         </div>
       </div>
-</body>
-
+  </body>
 </html>

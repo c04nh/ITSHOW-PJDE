@@ -1,63 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="img/logo2.png"
-    />
-    <link rel="stylesheet" href="/css/addSchedule.css" />
-    <link rel="stylesheet" href="/css/headerStyle.css" />
-    <link rel="stylesheet" href="/css/footerStyle.css" />
-    <title>공지사항 추가</title>
-  </head>
-  <body>
-    <nav class="header">
-        <div class="logo">
-          <img
-            src="/img/logo2.png"
-            style="height: 50px; width: 50px"
-          />
-          <span><a href="../../main">프젝돔이</a></span>
-        </div>
-  
-        <div class="headermenu" style="text-align: center">
-          <span><a href="../../main">내 프젝</a></span>
-          <span><a href="../calender">캘린더</a></span>
-          <span><a href="../meeting">회의록</a></span>
-          <span><a href="">TODO</a></span>
-          <span><a href="../notice">공지사항</a></span>
-        </div>
-        <div class="setting_menu">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="img/logo2.png"
+        />
+        <link rel="stylesheet" href="/css/main_header.css" />
+        <link rel="stylesheet" href="/css/menu.css" />
+        <link rel="stylesheet" href="/css/footerStyle.css" />
+        <link rel="stylesheet" href="/css/register.css" />
+        <script defer src="js/addProject.js"></script>
+        <script defer src="js/menu.js"></script>
+        <title>프젝돔이</title>
+      <body>
+        <nav class="header">
+          <div class="fake" style="text-align: center">
             <img
-            src="/img/fake.png"
-            style="height: 40px; width: 40px"
-          />
-        </div>
+              src="img/fake.png"
+              style="height: 60px; width: 60px"
+            />
+          </div>
+          <div class="logo" style="text-align: center">
+            <img
+              src="img/logo.png"
+              style="height: 60px; width: 60px"
+            />
+            <span>프젝돔이</a></span>
+          </div>
+          <div class="notice_icon">
+            <a href="noticeMain.html"
+              ><img
+                src="img/notice.png"
+                style="height: 40px; width: 40px"
+            /></a>
+          </div>
       </nav>
-    <nav class="pjWraper">
-      <div class="inputPj">
-          <form method="get" action="addSchedule/addSche">
-            <input type="text" id="name" name="name" placeholder="일정 입력" /><br />
-            <input type="date" id="select" name="select" value="" /><br />
-            <input type="submit" value="완료" id="button" style="
-            background-color: #798fba;
-            margin-top: 100px;
-            font-size: 15pt;
-            color: white;">
-          </form>
-        
-      </div>
-    </nav>
+
+    <div style="margin-top: 100px; margin-bottom: 100px;">
+        <form method="GET" action="trylogin">
+            <input type="text" id="id" name="id" placeholder="아이디"><br/>
+            <input type="password" id="password" name="password" placeholder="비밀번호"><br/>
+            <input type="submit" value="로그인" id="button">
+        </form>
+    </div>
+
     <div id="footer">
         <div class="col-12 col-md">
           <img
-            src="/img/logo2.png"
+            src="img/logo2.png"
             style="height: 70px; width: 70px"
           />
           <br />
@@ -70,7 +65,7 @@
             ></small
           >
         </div>
-  
+    
         <div class="col-6 col-md">
           <h5>Name</h5>
           <ul class="list-unstyled">
@@ -81,7 +76,7 @@
             <li><a class="link-secondary">조나현</a></li>
           </ul>
         </div>
-  
+    
         <div class="col-6 col-md">
           <h5>Github</h5>
           <ul class="list-unstyled">
@@ -127,7 +122,7 @@
             </li>
           </ul>
         </div>
-  
+    
         <div class="col-6 col-md">
           <h5>PhoneNumber</h5>
           <ul class="list-unstyled">
@@ -184,19 +179,6 @@
           </ul>
         </div>
       </div>
-    </div>
-  </body>
-  <script>
-    let today = new Date();
+</body>
 
-    let year = today.getFullYear();
-    let month = today.getMonth() + 1;
-    let date = today.getDate();
-
-    month = month.toString().length < 2 ? "0" + month : month;
-    date = date.toString().length < 2 ? "0" + date : date;
-
-    var select = document.getElementById("select");
-    select.value = year + "-" + month + "-" + date;
-  </script>
 </html>

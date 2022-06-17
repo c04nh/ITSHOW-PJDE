@@ -7,13 +7,13 @@
     <link
       rel="shortcut icon"
       type="image/x-icon"
-      href="img/logo2.png"
+      href="/img/logo2.png"
     />
     <link rel="stylesheet" href="/css/main_header.css" />
     <link rel="stylesheet" href="/css/menu.css" />
     <link rel="stylesheet" href="/css/footerStyle.css" />
-    <script defer src="js/addProject.js"></script>
-    <script defer src="js/menu.js"></script>
+    <script defer src="/js/addProject.js"></script>
+    <script defer src="/js/menu.js"></script>
     <title>프젝돔이</title>
   <body>
     <nav class="header">
@@ -24,14 +24,15 @@
         />
       </div>
       <div class="logo" style="text-align: center">
-        <img
+        <a href="main">
+          <img class="img"
           src="img/logo.png"
           style="height: 60px; width: 60px"
-        />
-        <span>프젝돔이</a></span>
+          />
+        <span class="pjde">프젝돔이</span></a>
       </div>
       <div class="notice_icon">
-        <a href="noticeMain.html"
+        <a href="main/notice"
           ><img
             src="/img/notice.png"
             style="height: 40px; width: 40px"
@@ -57,8 +58,8 @@
       <% } %>
     </div>
     <div class="addButton" style="position: fixed; bottom: 20px; right: 20px">
-      <a href="addProjectMain.html"
-        ><img src="img/plus.png" title="프젝 추가" class="plus"
+      <a href="addProject"
+        ><img src="/img/plus.png" title="프젝 추가" class="plus"
       /></a>
     </div> 
     <p>
