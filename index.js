@@ -18,7 +18,7 @@ const mysql = require('mysql');
 const { render } = require('express/lib/response')
 
 const db = mysql.createConnection({
-  host     : '192.168.96.1',
+  host     : 'localhost',
   user     : 'user',
   password : '1234',
   database : 'PJDE'
