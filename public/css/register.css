@@ -19,6 +19,7 @@ div{
 
 form{
     display: inline-block;
+    height: 300px;
 }
 
 input{
@@ -34,3 +35,6 @@ input{
     background-color: #798FBA;
     color: white;
 }
+ #top{
+    min-height: 551px;
+ }

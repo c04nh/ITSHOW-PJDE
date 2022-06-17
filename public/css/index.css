@@ -15,6 +15,7 @@
 .logo{
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .info{
@@ -35,6 +36,7 @@ button{
     border: 0;
     font-family: paybooc-Bold;
     font-size: 13pt;
+    border-radius: 5px;
 }
 
 a{

@@ -168,7 +168,7 @@ app.get("/trylogin", function(req,res){
         if(numRows > 0){
             console.log("로그인");
             var name = result[0].userName;
-            res.send("<script> window.location.replace('/main');</script>");
+            res.send("<script>alert('" + name + "님 환영합니다.'); window.location.replace('/main');</script>");
         }else{
             res.send("<script>alert('아이디 또는 비밀번호를 잘못 입력하였습니다.'); window.location.replace('/login');</script>");
         }
