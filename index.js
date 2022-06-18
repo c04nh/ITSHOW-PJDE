@@ -2,8 +2,10 @@ var express = require('express')
 
 var app = express()
 const bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 
 app.use(express.json())
+app.use(cookieParser())
 app.unsubscribe(bodyParser.urlencoded({extended: true}))
 
 app.listen(3000, function() {
@@ -33,11 +35,14 @@ app.get('/', function(req,res) {
 })
 
 app.get("/main", function(req,res){ 
-    var sql = 'select * from project;';
+    userId = req.cookies['id'];
+    userName = req.cookies['name'];
+
+    var sql = 'select * from project where manager = "' + userId + '" or userId1 = "' + userId + '" or userId2 = "' + userId + '" or userId3 = "' + userId + '" or userId4 = "' + userId + '";';
 
     db.query(sql, function (err, result, fields) {
         if (err) throw err;
-        res.render('main', {result:result});
+        res.render('main', {result:result, userId:userId, userName:userName});
     }); 
 })
 
@@ -145,11 +150,24 @@ app.get("/send", function(req,res){
     var name = req.query.name; 
     var id = req.query.id;
     var password = req.query.password;
-    
-    db.query('insert into user (userId, password, userName) VALUES("' + id + '", "' + password + '", "' + name + '");');
 
-    res.send("<script>alert('회원가입 되었습니다.'); window.location.replace('/');</script>");
+    var sql = 'select * from user where userId = "' + id + '";';
 
+    if(name.length > 0 && name.length <= 10 && id.length > 0 && id.length <= 20 && password.length > 0 && password.length <= 20){
+        db.query(sql, function(err, result){
+            if (err) throw err;
+            var numRows = result.length;
+            if(numRows > 0){
+                res.send("<script>alert('아이디가 중복됩니다.'); window.location.replace('/register');</script>");
+            }else{
+                db.query('insert into user (userId, password, userName) VALUES("' + id + '", "' + password + '", "' + name + '");');
+                res.send("<script>alert('회원가입 되었습니다.'); window.location.replace('/');</script>");
+            }
+        })
+        
+    }else{
+        res.send("<script>alert('다시 입력해주세요.'); window.location.replace('/register');</script>");
+    }
 })
 
 app.get("/login", function(req, res){
@@ -168,11 +186,13 @@ app.get("/trylogin", function(req,res){
         if(numRows > 0){
             console.log("로그인");
             var name = result[0].userName;
+            res.cookie('id', id);
+            res.cookie('name', name);
             res.send("<script>alert('" + name + "님 환영합니다.'); window.location.replace('/main');</script>");
         }else{
             res.send("<script>alert('아이디 또는 비밀번호를 잘못 입력하였습니다.'); window.location.replace('/login');</script>");
         }
-      });
+    });
     
 })
 
