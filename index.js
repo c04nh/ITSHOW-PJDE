@@ -35,14 +35,14 @@ app.get('/', function(req,res) {
 })
 
 app.get("/main", function(req,res){ 
-    userId = req.cookies['id'];
-    userName = req.cookies['name'];
+    var userId = req.cookies['id'];
 
     var sql = 'select * from project where manager = "' + userId + '" or userId1 = "' + userId + '" or userId2 = "' + userId + '" or userId3 = "' + userId + '" or userId4 = "' + userId + '";';
 
     db.query(sql, function (err, result, fields) {
         if (err) throw err;
-        res.render('main', {result:result, userId:userId, userName:userName});
+
+        res.render('main', {result:result, userId:userId});
     }); 
 })
 
@@ -51,7 +51,8 @@ app.get("/addProject", function(req,res){
 })
 
 app.get("/main/notice", function(req,res){ 
-    const sql = "select * from notice join project where notice.proid = project.proid order by notDate desc;";
+    var userId = req.cookies['id'];
+    const sql = 'select * from notice join project where notice.proid = project.proid and (manager = "' + userId + '" or userId1 = "' + userId + '" or userId2 = "' + userId + '" or userId3 = "' + userId + '" or userId4 = "' + userId + '") order by notDate desc;';
     db.query(sql, (err, row)=>{
       if(err) {
         console.error(err.message);
@@ -106,10 +107,10 @@ app.get("/main/:id/meeting/addMeeting", function(req,res){
 app.get("/main/:id/meeting/addMeeting/addMeet", function(req,res){
     var id = req.params.id;
     var title = req.query.title;
-    var name = req.query.name;
+    var userId = req.cookies['id'];
     var content = req.query.content;
 
-    db.query('insert into meeting (title, userId, proId, content, meDate) VALUES("' + title + '", "' + name + '", "' + id + '", "' + content + '", DATE_FORMAT(now(), \'%Y-%m-%d\'));');
+    db.query('insert into meeting (title, userId, proId, content, meDate) VALUES("' + title + '", "' + userId + '", "' + id + '", "' + content + '", DATE_FORMAT(now(), \'%Y-%m-%d\'));');
 
     res.send("<script>window.location.replace('/main/" + id +"/meeting');</script>");
 })
@@ -135,9 +136,9 @@ app.get("/main/:id/notice/addNotice", function(req,res){
 app.get("/main/:id/notice/addNotice/addNot", function(req,res){
     var id = req.params.id;
     var content = req.query.content;
-    var name = req.query.name;
+    var userId = req.cookies['id'];
 
-    db.query('insert into notice (content, proId, userId, notDate) VALUES("' + content + '", "' + id + '", "' + name + '", DATE_FORMAT(now(), \'%Y-%m-%d\'));');
+    db.query('insert into notice (content, proId, userId, notDate) VALUES("' + content + '", "' + id + '", "' + userId + '", DATE_FORMAT(now(), \'%Y-%m-%d\'));');
 
     res.send("<script>window.location.replace('/main/" + id +"/notice');</script>");
 })
@@ -199,7 +200,6 @@ app.get("/trylogin", function(req,res){
 app.get("/create", function(req,res){ 
     var color = req.query.color;
     var title = req.query.title;
-    var manager = req.query.manager;
     var id1 = req.query.id1;
     var id2 = req.query.id2;
     var id3 = req.query.id3;
@@ -215,13 +215,52 @@ app.get("/create", function(req,res){
     var seconds = ('0' + today.getSeconds()).slice(-2); 
     var timeString = hours + minutes + seconds;
 
+    Id = req.cookies['id'];
+
     var len = title.length;
     if(len > 6) len = 6;
 
     var proid = dateString + timeString + title.substring(0, len);
 
-    db.query('insert into project (proId, proName, col, manager, userId1, userId2, userId3, userId4) VALUES("' + proid + '", "' + title + '", "' + color + '", "' + manager + '", "' + id1 + '", "' + id2 + '", "' + id3 + '", "' + id4 + '");');
+    const sql = "SELECT * FROM user WHERE userId=?";
 
-    res.send("<script> window.location.replace('/main');</script>");
+    db.query(sql, id1, (err1, row1)=>{
+        if(err1) {
+            console.error(err1.message);
+        }
+        if(row1.length > 0){
+            db.query(sql, id2, (err2, row2)=>{
+                if(err2) {
+                    console.error(err2.message);
+                }
+                if(row2.length > 0){
+                    db.query(sql, id3, (err3, row3)=>{
+                        if(err3) {
+                            console.error(err3.message);
+                        }
+                        if(row3.length > 0){
+                            db.query(sql, id4, (err4, row4)=>{
+                                if(err4) {
+                                    console.error(err4.message);
+                                }
+                                if(row4.length > 0){
+                                    db.query('insert into project (proId, proName, col, manager, userId1, userId2, userId3, userId4) VALUES("' + proid + '", "' + title + '", "' + color + '", "' + Id + '", "' + id1 + '", "' + id2 + '", "' + id3 + '", "' + id4 + '");');
+                                    res.send("<script> window.location.replace('/main');</script>");
+                                }else{
+                                    res.send("<script>alert('" + id4 + "는(은) 없는 아이디입니다.'); window.location.replace('/addProject');</script>");
+                                }
+                            });
+                        }else{
+                            res.send("<script>alert('" + id3 + "는(은) 없는 아이디입니다.'); window.location.replace('/addProject');</script>");
+                        }
+                    });
+                }else{
+                    res.send("<script>alert('" + id2 + "는(은) 없는 아이디입니다.'); window.location.replace('/addProject');</script>");
+                }
+            });
+        }else{
+            res.send("<script>alert('" + id1 + "는(은) 없는 아이디입니다.'); window.location.replace('/addProject');</script>");
+        }
+    });
 
 })
